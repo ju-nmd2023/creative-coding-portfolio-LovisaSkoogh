@@ -1,7 +1,17 @@
 [
   {
-    "file": "experiments/example.js",
-    "name": "Name of your experiment",
-    "description": "Explains the what and the why. What is the main idea? What is the purpose? Describes the coding process and implementation choices and gives a high level system overview."
+    "file": "experiments/treerings.js",
+    "name": "Tree of Life",
+    "description": "The lines resemble the rings inside a tree. I did this because my last name means forest, so I thought it was a fun idea. The code is adapted from a tutorial by Ahmad Moussa."
+  },
+  {
+    "file": "experiments/treerings2.js",
+    "name": "Tree of Life",
+    "description": "The lines resemble the rings inside a t"
+  },
+  {
+    "file": "experiments/racingheart.js",
+    "name": "No name yet",
+    "description": "No description yet"
   }
 ]
