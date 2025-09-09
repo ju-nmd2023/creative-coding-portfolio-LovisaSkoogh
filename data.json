@@ -1,17 +1,27 @@
 [
   {
     "file": "experiments/treerings.js",
-    "name": "Tree of Life",
+    "name": "Tree Rings | Tree of Life",
     "description": "The lines resemble the rings inside a tree. I did this because my last name means forest, so I thought it was a fun idea. The code is adapted from a tutorial by Ahmad Moussa."
   },
   {
     "file": "experiments/treerings2.js",
-    "name": "Tree of Life",
-    "description": "The lines resemble the rings inside a t"
+    "name": "Tree Rings | Version 1 | Spinning tree",
+    "description": "An adapted version of the tree rings. The rings spin in a circle, creating what could be interpreted as a thicker tree ring. Or just a circle, however you see it."
   },
   {
-    "file": "experiments/racingheart.js",
-    "name": "No name yet",
-    "description": "No description yet"
+    "file": "experiments/treerings3.js",
+    "name": "Tree Rings | Version 2 | Topographic map",
+    "description": "The tree rings evolved into somehting that resembles a topographic map. The curves are hills and valleys."
+  },
+  {
+    "file": "experiments/perlinnoise2.js",
+    "name": "Perlin Noise | Version 1 | Box It",
+    "description": "I liked the idea of using perlin noise to create multiple boxes. It created a visual that is difficult but fun to look at."
+  },
+  {
+    "file": "experiments/perlinnoise3.js",
+    "name": "Perlin Noise | Version 2 | Nyan Cat",
+    "description": "This artwork is inspired by the popular video called Nyan Cat. Even without the cat-attributes it is still very recognisable. The code is adapted from Garrits tutorial."
   }
 ]
