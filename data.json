@@ -1,5 +1,22 @@
 [
   {
+    "file": "experiments/sound.js",
+    "name": "Flow Field | Version 2 | Sunshine",
+    "description": "An adaptation of Tyler Hobbs flow field, code adapted from Codepen. By having the flow fields move toward the center, it creates somehting that resembles the sun."
+  },
+
+  {
+    "file": "experiments/flowfields3.js",
+    "name": "Flow Field | Version 2 | Sunshine",
+    "description": "An adaptation of Tyler Hobbs flow field, code adapted from Codepen. By having the flow fields move toward the center, it creates somehting that resembles the sun."
+  },
+  {
+    "file": "experiments/flowfields2.js",
+    "name": "Flow Field | Version 1 | Purple Rain",
+    "description": "An adaptation of Tyler Hobbs flow field, code adapted from Codepen. The recreation is an homage to the song Purple Rain by Prince."
+  },
+
+  {
     "file": "experiments/treerings.js",
     "name": "Tree Rings | Tree of Life",
     "description": "The lines resemble the rings inside a tree. I did this because my last name means forest, so I thought it was a fun idea. The code is adapted from a tutorial by Ahmad Moussa."
