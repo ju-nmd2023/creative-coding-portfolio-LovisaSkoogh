@@ -66,7 +66,7 @@ function setup() {
   field = generateField();
   generateAgents();
 
-  // this creates the rectangle
+  // this creates the rectangle - was meant to be an umbrella, but just made a rectangle instead so that is why its called umbrella
   umbrella = createObject(width / 2, height / 2, 400, 100);
 }
 
@@ -145,7 +145,7 @@ function draw() {
     agent.checkBorders();
     agent.draw();
 
-    //checks collision with umbrella PLEASE WORK
+    //checks collision with rectangle
     if (checkCollision(agentAsObject(agent), umbrella)) {
       agent.position.y = umbrella.y - umbrella.h / 2 - 1;
     }

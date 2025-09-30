@@ -1,4 +1,6 @@
 // This code was slightly adapted from https://codepen.io/pixelkind/pen/OJrRzOm retrieved 17-09-25
+let newFlow = false;
+
 class Agent {
   constructor(x, y, maxSpeed, maxForce) {
     this.position = createVector(x, y);
@@ -49,8 +51,13 @@ class Agent {
 
   draw() {
     push();
-    stroke(93, 44, 97, 50);
+    if (newFlow) {
+      stroke(125, 49, 49, 50);
+    } else {
+      stroke(223, 128, 128, 80);
+    }
     strokeWeight(1);
+
     line(
       this.lastPosition.x,
       this.lastPosition.y,
@@ -63,7 +70,7 @@ class Agent {
 
 function setup() {
   createCanvas(innerWidth, innerHeight);
-  background(255, 255, 255);
+  background(172, 104, 104);
   field = generateField();
   generateAgents();
 }
@@ -82,7 +89,7 @@ function generateField() {
 }
 
 function generateAgents() {
-  for (let i = 0; i < 200; i++) {
+  for (let i = 0; i < 1500; i++) {
     let agent = new Agent(
       Math.random() * innerWidth,
       Math.random() * innerHeight,
@@ -96,7 +103,7 @@ function generateAgents() {
 const fieldSize = 50;
 const maxCols = Math.ceil(innerWidth / fieldSize);
 const maxRows = Math.ceil(innerHeight / fieldSize);
-const divider = 4;
+const divider = 18;
 let field;
 let agents = [];
 
@@ -128,6 +135,9 @@ window.addEventListener("keydown", () => {
   // the following line was written with Chatgpt https://chatgpt.com/share/68da6543-89f4-8010-b174-18e226b927de retrieved 29-09-25
   const randomNote = notes[Math.floor(Math.random() * notes.length)];
   synth.triggerAttackRelease(randomNote, "4n");
+
+  field = generateField();
+  newFlow = true;
 });
 
 window.addEventListener("click", () => {
