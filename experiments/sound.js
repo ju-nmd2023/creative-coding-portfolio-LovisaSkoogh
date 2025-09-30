@@ -1,56 +1,135 @@
+// This code was slightly adapted from https://codepen.io/pixelkind/pen/OJrRzOm retrieved 17-09-25
+class Agent {
+  constructor(x, y, maxSpeed, maxForce) {
+    this.position = createVector(x, y);
+    this.lastPosition = createVector(x, y);
+    this.acceleration = createVector(0, 0);
+    this.velocity = createVector(0, 0);
+    this.maxSpeed = maxSpeed;
+    this.maxForce = maxForce;
+  }
+
+  follow(desiredDirection) {
+    desiredDirection = desiredDirection.copy();
+    desiredDirection.mult(this.maxSpeed);
+    let steer = p5.Vector.sub(desiredDirection, this.velocity);
+    steer.limit(this.maxForce);
+    this.applyForce(steer);
+  }
+
+  applyForce(force) {
+    this.acceleration.add(force);
+  }
+
+  update() {
+    this.lastPosition = this.position.copy();
+
+    this.velocity.add(this.acceleration);
+    this.velocity.limit(this.maxSpeed);
+    this.position.add(this.velocity);
+    this.acceleration.mult(0);
+  }
+
+  checkBorders() {
+    if (this.position.x < 0) {
+      this.position.x = innerWidth;
+      this.lastPosition.x = innerWidth;
+    } else if (this.position.x > innerWidth) {
+      this.position.x = 0;
+      this.lastPosition.x = 0;
+    }
+    if (this.position.y < 0) {
+      this.position.y = innerHeight;
+      this.lastPosition.y = innerHeight;
+    } else if (this.position.y > innerHeight) {
+      this.position.y = 0;
+      this.lastPosition.y = 0;
+    }
+  }
+
+  draw() {
+    push();
+    stroke(93, 44, 97, 50);
+    strokeWeight(1);
+    line(
+      this.lastPosition.x,
+      this.lastPosition.y,
+      this.position.x,
+      this.position.y
+    );
+    pop();
+  }
+}
+
+function setup() {
+  createCanvas(innerWidth, innerHeight);
+  background(255, 255, 255);
+  field = generateField();
+  generateAgents();
+}
+
+function generateField() {
+  let field = [];
+  noiseSeed(Math.random() * 100);
+  for (let x = 0; x < maxCols; x++) {
+    field.push([]);
+    for (let y = 0; y < maxRows; y++) {
+      const value = noise(x / divider, y / divider) * Math.PI * 2;
+      field[x].push(p5.Vector.fromAngle(value));
+    }
+  }
+  return field;
+}
+
+function generateAgents() {
+  for (let i = 0; i < 200; i++) {
+    let agent = new Agent(
+      Math.random() * innerWidth,
+      Math.random() * innerHeight,
+      4,
+      0.1
+    );
+    agents.push(agent);
+  }
+}
+
+const fieldSize = 50;
+const maxCols = Math.ceil(innerWidth / fieldSize);
+const maxRows = Math.ceil(innerHeight / fieldSize);
+const divider = 4;
+let field;
+let agents = [];
+
+function draw() {
+  for (let agent of agents) {
+    const x = Math.floor(agent.position.x / fieldSize);
+    const y = Math.floor(agent.position.y / fieldSize);
+    const desiredDirection = field[x][y];
+    agent.follow(desiredDirection);
+    agent.update();
+    agent.checkBorders();
+    agent.draw();
+  }
+}
+
+// THE SOUND
+
 // the following lines were adapted from Garrits code https://codepen.io/pixelkind/pen/BavRRjz retrieved 25-09-25
 let synth;
+const notes = ["C3", "D3", "E3", "F3", "G3", "A3", "B3"];
 
 window.addEventListener("load", () => {
-  synth = new Tone.MonoSynth().toDestination();
+  synth = new Tone.MonoSynth({
+    oscillator: { type: "square" },
+  }).toDestination();
 });
 
 window.addEventListener("keydown", () => {
-  synth.triggerAttackRelease("A3", "4n");
-  //synth.triggerAttackRelease("B3", "4n");
+  // the following line was written with Chatgpt https://chatgpt.com/share/68da6543-89f4-8010-b174-18e226b927de retrieved 29-09-25
+  const randomNote = notes[Math.floor(Math.random() * notes.length)];
+  synth.triggerAttackRelease(randomNote, "4n");
 });
 
 window.addEventListener("click", () => {
   Tone.start();
 });
-
-/*const sineButton = document.getElementById("sine");
-const startButton = document.getElementById("start");
-const stopButton = document.getElementById("stop");
-
-const attackInput = document.getElementById("attack");
-const decayInput = document.getElementById("decay");
-const sustainInput = document.getElementById("sustain");
-const releaseInput = document.getElementById("release");*/
-
-//const buttonA = document.getElementById("buttonA");
-//const buttonB = document.getElementById("buttonB");
-
-/*sineButton.addEventListener("click", () => {
-  synth.oscillator.type = "sine";
-  selectedElement.innerText = "Selected: Sine";
-});
-
-attackInput.addEventListener("change", () => {
-  synth.envelope.attack = attackInput.value;
-});
-
-decayInput.addEventListener("change", () => {
-  synth.envelope.decay = decayInput.value;
-});
-
-sustainInput.addEventListener("change", () => {
-  synth.envelope.sustain = sustainInput.value;
-});
-
-releaseInput.addEventListener("change", () => {
-  synth.envelope.release = releaseInput.value;
-});*/
-
-/*buttonA.addEventListener("click", () => {
-  synth.triggerAttackRelease("A3", "4n");
-});
-
-buttonB.addEventListener("click", () => {
-  synth.triggerAttackRelease("B3", "4n");
-});*/
