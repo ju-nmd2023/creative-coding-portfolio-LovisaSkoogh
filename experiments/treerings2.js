@@ -6,6 +6,7 @@ function setup() {
   noFill();
 }
 
+// the following code was adapted from https://www.gorillasun.de/blog/radial-perlin-noise-and-generative-tree-rings/ retrieved 03-09-25
 let scale = 650;
 let resolution = 0.002;
 let numPoints = 100;
